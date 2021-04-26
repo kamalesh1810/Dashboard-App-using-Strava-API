@@ -77,6 +77,7 @@ def get():
     df1['gear_id']=gears
     df1.to_csv('gear.csv')
     df['gear_name']=df['gear_id'].apply(lambda x: df1['Name'][x])
+    df=df[df['type']=="Run"]
     df=df.round(2)
     df.to_csv('activities.csv')
 
