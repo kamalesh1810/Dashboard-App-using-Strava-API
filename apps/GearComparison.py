@@ -18,10 +18,14 @@ df2=pd.read_csv('datasets/gear.csv')
 gear_1_name=df2['Name'][0]
 gear_1_distance=round(df2['Distance'][0]/1000,2)
 gear_1_count=df[df.gear_name==gear_1_name].gear_name.count()
+gear_1_average_speed=round(df[df.gear_name==gear_1_name].average_speed.mean(),2)
+gear_1_max_speed=df[df.gear_name==gear_1_name].max_speed.max()
+
 gear_2_name=df2['Name'][1]
 gear_2_distance=round(df2['Distance'][1]/1000,2)
 gear_2_count=df[df.gear_name==gear_2_name].gear_name.count()
-
+gear_2_average_speed=round(df[df.gear_name==gear_2_name].average_speed.mean(),2)
+gear_2_max_speed=df[df.gear_name==gear_2_name].max_speed.max()
 
 layout=html.Div([   
     html.Nav(
@@ -39,7 +43,7 @@ layout=html.Div([
     html.Div(className="Top"),
     html.Div([
         html.Div([
-            html.Div('Gear Comparison',className="graph-titles"),
+            html.Div('Gear Details',className="graph-titles"),
             dcc.Graph(
                 className="Graph",
                 id='graph1',
@@ -50,7 +54,7 @@ layout=html.Div([
         ),
         html.Div([
             html.Div([
-            html.Div('Gear Details',className="Graph-details",
+            html.Div('Comparison',className="Graph-details",
                 style={'padding-top': '10px',
                     'font-size': '27px',}
             ),
@@ -59,13 +63,17 @@ layout=html.Div([
             ),
             html.Div('Total Runs- '+str(gear_1_count),className="Graph-details"),
             html.Div('Distance Covered- '+str(gear_1_distance)+" km",className="Graph-details"),
+            html.Div('Overall average speed- '+str(gear_1_average_speed)+' kmph',className="Graph-details"),
+            html.Div('Max Speed Achieved- '+str(gear_1_max_speed)+' kmph',className="Graph-details"),
             html.Div(str(gear_2_name),className="Graph-details",
                 style={'font-size': '20px','padding-top': '10px',}
             ),
             html.Div('Total Runs- '+str(gear_2_count),className="Graph-details"),
             html.Div('Distance Covered- '+str(gear_2_distance)+' km',className="Graph-details"),
+            html.Div('Overall average speed- '+str(gear_2_average_speed)+' kmph',className="Graph-details"),
+            html.Div('Max Speed Achieved- '+str(gear_2_max_speed)+' kmph',className="Graph-details"),
             ],className="graph-1-box",
-            style={'height':'320px'}
+            style={'height':'420px'}
             ),
         ],className="Rightbox-page4"),
         
