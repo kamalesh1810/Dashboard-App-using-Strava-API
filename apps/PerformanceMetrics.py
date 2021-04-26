@@ -3,7 +3,7 @@ import dash_html_components as html
 import plotly.express as px
 import pandas as pd
 from plotly.graph_objs import *
-
+import datetime
 
 df = pd.read_csv('datasets/activities.csv')
 fig = px.scatter(df, x="average_speed", y="distance",color="gear_name", hover_name="name", size="max_speed",
@@ -37,6 +37,35 @@ noofruns=months.runs.sum()
 mostrunscount=months['runs'][0]
 mostruns=months['month'][0]
 mostdistance=months['distance'][0]
+
+
+dates=[]
+for x in range(0,df.shape[0]):
+    dateformat=datetime.datetime.strptime(df['start_date'][x], '%Y-%m-%dT%H:%M:%SZ')
+    dateformat=dateformat.strftime('%Y-%m-%d')
+    dates.append(dateformat)
+df2=pd.DataFrame({'date':dates})
+df2.date=pd.to_datetime(df2.date)
+df2['count']=df2.date.diff().dt.days.ne(-1).cumsum()
+df['date']=df2['date']
+df['count']=df2.groupby(['count']).cumcount()+1
+index=df['count'].idxmax()
+max_count=df['count'].max()
+x=index-max_count+1
+y=index+1
+end=str(df['date'][x])
+start=str(df['date'][y-1])
+d=round(df.iloc[x:y].distance.sum()/1000,2)
+
+fig6 = px.bar(df.iloc[x:y], y="distance", x="date", hover_name='name',
+    labels={
+        'distance':'Distance (m)',
+        'date':'Date'
+    }
+)
+fig6.layout.paper_bgcolor = 'rgb(255, 255, 255, 0.5)'
+fig6.layout.plot_bgcolor = 'rgb(255, 255, 255)'
+
 
 splits=pd.read_csv('datasets/splits.csv')
 splits=splits.round(2)
@@ -123,6 +152,12 @@ layout=html.Div([
                 id='graph2',
                 figure=fig,
             ),
+            html.Div('Running Streak',className="graph-titles"),
+            dcc.Graph(
+                className="Graph",
+                id='graph6',
+                figure=fig6,
+            ),
             html.Div('Split Analysis',className="graph-titles"),
             dcc.Graph(
                 className="Graph",
@@ -168,6 +203,21 @@ layout=html.Div([
         html.Div(className='graph-spacing'),
 
         html.Div([
+            html.Div('Longest Streak',className="Graph-details",
+                style={'padding-top': '10px',
+                        'font-size': '25px',}
+                ),
+            html.Div(str(max_count)+" days",className="Graph-details"),
+            html.Div('From '+str(start[0:10])+" to "+str(end[0:10]),className="Graph-details"),
+            html.Div('Total Distance- '+str(d)+' km',className="Graph-details"),
+        ],className="graph-1-box",
+        ),
+
+        html.Div(className='graph-spacing',
+        style={'height':'300px'}
+        ),
+
+        html.Div([
             html.Div('Split Details',className="Graph-details",
                 style={'padding-top': '10px',
                         'font-size': '25px',}
@@ -204,7 +254,7 @@ layout=html.Div([
     ],className="Rightbox-page2"),
 
     ],className="container",
-    style={'height':'2200px'},
+    style={'height':'2650px'},
     ),
 
     html.Div(className="Bottom"),
