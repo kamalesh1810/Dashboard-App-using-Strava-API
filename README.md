@@ -30,5 +30,5 @@ pip install scikit-learn
 4. Run index.py 
 
 ### Project Video
-https://user-images.githubusercontent.com/61874657/116049340-cd516900-a693-11eb-99eb-9bf5eab293ae.mp4  
+https://user-images.githubusercontent.com/61874657/116072301-8328b180-a6ac-11eb-80c9-04f7f143ba05.mp4
 
