@@ -1,0 +1,59 @@
+/*fonts*/
+@import url("https://fonts.googleapis.com/css2?family=Signika:wght@500&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+
+.Graph {
+  margin-top: 30px;
+  margin-left: 20px;
+  height: 400px;
+  margin-bottom: 50px;
+  width: 650px;
+}
+
+.graph-titles {
+  margin-top: 20px;
+  margin-left: 10px;
+  font-family: "Signika", sans-serif;
+  font-size: 30px;
+}
+
+.Rightbox-page2 {
+  margin-right: 1%;
+  margin-left: 4%;
+  height: fit-content;
+  width: 40%;
+  margin-top: 10px;
+  display: inline-block;
+  padding-bottom: 30px;
+  top: 230px;
+  position: relative;
+}
+
+.Leftbox-page2 {
+  margin-top: 0px;
+  margin-left: 2.5%;
+  margin-right: 1%;
+  width: 48%;
+  height: fit-content;
+  display: inline-block;
+  position: relative;
+  top: -160px;
+}
+
+.Graph-details {
+  margin-top: 10px;
+  font-size: 17px;
+  margin-left: 30px;
+  font-family: "Open Sans", sans-serif;
+}
+
+.graph-spacing {
+  height: 270px;
+}
+
+.graph-1-box {
+  height: 230px;
+  width: 500px;
+  background-color: rgb(255, 255, 255, 0.9);
+}
