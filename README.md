@@ -1,1 +1,1 @@
-# Dashboard App using Strava API
+# Dashboard-App-using-Strava-API
