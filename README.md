@@ -28,6 +28,3 @@ pip install scikit-learn
 2. Setup Strava API Application from the official documentation- https://developers.strava.com/docs/getting-started/
 3. Replace client id, client-id, refresh token, in getdata.py and run it
 4. Run index.py 
-
-### Project Video
-https://user-images.githubusercontent.com/61874657/116119663-4d9bbc80-a6dc-11eb-8910-8866887448f9.mp4
